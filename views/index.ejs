@@ -1,0 +1,46 @@
+<%- include partials/header.ejs %>
+<%- include partials/homenavbar.ejs %>
+<body>
+    <div class="container">
+        <hr>
+        <div class="jumbotron">
+            <h1 class="display-4">Bem-vindo</h1>
+            <p class="lead">Este é um simples blog do guia do programador.</p>
+            <hr class="my-4">
+            <p>Descrição detalhada aqui!</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
+          </div>
+        <hr>
+        <% articles.forEach(article => { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+                <div class="card-body">
+                    <a href="/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+                </div>
+            </div>
+            <br>
+        <% }) %>
+
+        <div class="row">
+            <div class="col col-12">
+                <a style="float:right" href="/articles/page/2">Next >>></a>
+            </div>
+            <hr>
+        </div>
+        <hr>
+    </div>
+
+    <% var unidade = { uf: "RJ"} %>
+
+    <select>
+        <option value="RN" <% if(unidade.uf === 'RN') { %> selected <% } %>>RN</option>
+        <option value="RJ" <% if(unidade.uf === 'RJ') { %> selected <% } %>>RJ</option>
+        <option value="RR" <% if(unidade.uf === 'RR') { %> selected <% } %>>RR</option>
+        <option value="RS" <% if(unidade.uf === 'RS') { %> selected <% } %>>RS</option>
+    </select>
+
+</body>
+
+<%- include partials/footer.ejs %>
