@@ -3,25 +3,21 @@ const router = express.Router();
 const User = require("./User");
 const bcrypt = require('bcryptjs');
 
-//Criar usuario
+//Direcionar para criar usuario
+
 router.get("/signup", (req, res) => {
     User.findAll().then(users => {
         res.render("users/create")
     })
 })
 
-// //
-
-// router.get("/users/create", (req, res) => {
-//     res.render("/users/index", { users: users })
-// })
-
 // Signup usuários
 
 router.post("/users/create", (req, res) => {
+    var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
-    // res.json({email, password});
+    // res.json({name,email, password});
     User.findOne(
         {
             where: { email: email }
@@ -34,12 +30,13 @@ router.post("/users/create", (req, res) => {
             var hash = bcrypt.hashSync(password, salt);
 
             User.create({
+                name: name,
                 email: email,
                 password: hash
             }).then(() => {
-                res.redirect("/");
+                res.redirect("/login");
             }).catch((err) => {
-                res.redirect("/")
+                res.redirect("/signup")
             })
         } else {
             res.redirect("/users/create")
@@ -56,6 +53,7 @@ router.get("/login", (req, res) => {
 // Faz login
 
 router.post("/authenticate",(req,res)=>{
+    var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
 
@@ -67,6 +65,7 @@ router.post("/authenticate",(req,res)=>{
 
             if(correct){
                 req.session.user = {
+                    name: user.name,
                     id: user.id,
                     email: user.email
                 }
@@ -81,6 +80,8 @@ router.post("/authenticate",(req,res)=>{
     });
 
 });
+
+//Faz o logout
 
 router.get("/logout", (req, res) => {
     req.session.user = undefined;

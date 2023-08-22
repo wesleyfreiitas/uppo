@@ -4,11 +4,12 @@ const userAuth = require("../middleware/userAuth");
 const User = require("../users/User");
 
 
-router.get("/dashboard", userAuth ,(req, res) => {
-    User.findOne({
-        }).then(user => {
-        res.render("dashboard",{user:user})
-    });
+router.get("/dashboard", userAuth, (req, res) => {
+
+
+    res.render("dashboard", req.session.user)
+
+
 });
 
 // router.get("/admin/articles/new", userAuth ,(req ,res) => {
