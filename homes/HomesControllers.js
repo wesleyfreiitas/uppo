@@ -3,6 +3,9 @@ const router = express.Router();
 const userAuth = require("../middleware/userAuth");
 const User = require("../users/User");
 
+router.get("/",(req, res)=>{
+    res.render("users/login")
+})
 
 router.get("/dashboard", userAuth, (req, res) => {
 

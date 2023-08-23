@@ -40,5 +40,6 @@ app.use("/",usersController);
 app.use("/",homesController);
 
 app.listen(3000, (req,res) => {
+    
     console.log("O servidor está rodando!")
 })
