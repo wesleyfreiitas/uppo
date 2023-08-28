@@ -1,0 +1,21 @@
+<%- include('../partials/header'); -%>
+<!-- <%- include('../partials/navbar'); -%> -->
+
+<div class="container">
+    <!-- <hr>  -->
+    <div class="card mt-5">
+        <div class="card-header">
+            <h2 style="text-align: center;">Criar usuário</h2>
+        </div>
+        <div class="card-body">
+            <form action="/integration/creategit" method="POST">
+                <input class="form-control" name="name" type="text" placeholder="Fulano"><br>
+                <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
+                <input class="form-control" name="password" type="password" placeholder="******"><br>
+                <button type="submit" class="btn btn-secondary btn-block">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer'); -%>

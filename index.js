@@ -6,6 +6,7 @@ const connection = require("./database/database");
 
 const usersController = require("./users/UsersController");
 const homesController = require("./homes/HomesControllers");
+const integrationController = require("./homes/IntegrationsControllers");
 
 const User = require('./users/User');
 
@@ -38,8 +39,8 @@ connection
 
 app.use("/",usersController);
 app.use("/",homesController);
+app.use("/",integrationController);
 
 app.listen(3000, (req,res) => {
-    
     console.log("O servidor está rodando!")
 })
