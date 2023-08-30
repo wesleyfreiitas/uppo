@@ -6,7 +6,7 @@ const connection = require("./database/database");
 
 const usersController = require("./users/UsersController");
 const homesController = require("./homes/HomesControllers");
-const integrationController = require("./homes/IntegrationsControllers");
+const integrationController = require("./integration/IntegrationsController");
 
 const User = require('./users/User');
 

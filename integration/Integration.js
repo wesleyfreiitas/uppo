@@ -11,6 +11,9 @@ const Integration = connection.define('integrations', {
     }, descricao: {
         type: Sequelize.STRING,
         allowNull: false
+    }, json: {
+        type: Sequelize.STRING,
+        allowNull: false
     }
 })
 
