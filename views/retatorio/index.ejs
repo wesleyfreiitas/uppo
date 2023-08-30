@@ -1,0 +1,19 @@
+<table id="automation">
+    <thead>
+        <tr>
+            <th>nome</th>
+            <th>numero</th>
+            <th>data e hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% integrations.forEach(integration => { %>
+            <tr>
+                <td><%= integration.id %></td>
+                <td><%= integration.descricao %></td>
+                <td><%= integration.execution %></td>
+            </tr>
+        <% }) %>
+
+    </tbody>
+</table>
