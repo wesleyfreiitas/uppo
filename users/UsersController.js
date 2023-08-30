@@ -16,6 +16,7 @@ router.get("/signup", (req, res) => {
 router.post("/users/create", (req, res) => {
     var name = req.body.name;
     var email = req.body.email;
+    var phone = req.body.phone;
     var password = req.body.password;
     // res.json({name,email, password});
     User.findOne(
@@ -32,6 +33,7 @@ router.post("/users/create", (req, res) => {
             User.create({
                 name: name,
                 email: email,
+                phone: phone,
                 password: hash
             }).then(() => {
                 res.redirect("/login");

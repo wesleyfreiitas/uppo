@@ -8,12 +8,16 @@ const User = connection.define('users', {
     }, email: {
         type: Sequelize.STRING,
         allowNull: false
+    }, phone: {
+        type: Sequelize.STRING,
+        allowNull: false
+    
     }, password: {
         type: Sequelize.STRING,
         allowNull: false
     }
 })
 
-User.sync({ force: false })
+User.sync({ force: true })
 
 module.exports = User;
