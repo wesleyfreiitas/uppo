@@ -10,6 +10,11 @@ router.get("/signup", (req, res) => {
         res.render("users/create")
     })
 })
+router.get("/remember", (req, res) => {
+    User.findAll().then(users => {
+        res.render("users/remember")
+    })
+})
 
 // Signup usuários
 
