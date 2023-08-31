@@ -59,7 +59,7 @@ router.get("/login", (req, res) => {
 
 // Faz login
 
-router.post("/authenticate",(req,res)=>{
+router.post("/authenticate",(req,res) => {
     var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
