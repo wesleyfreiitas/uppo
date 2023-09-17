@@ -3,12 +3,7 @@
 
 		<%- include('partials/navbar'); -%>
 
-
-
-
 			<div id="main">
-
-
 
 				<div class="clearfix"></div>
 				<br />
@@ -111,33 +106,28 @@
 				<div class="col-div-12">
 					<div class="box-8">
 						<div class="content-box">
-							<p>Clientes <span>Ver Todos</span></p>
+							<p>Workflows </p>
 							<br />
 							<table id="automation">
 								<thead>
 									<tr>
-										<th>Nome</th>
-										<th>Email</th>
-										<th>Número</th>
+										<th>ID</th>
+										<th>NOME</th>
+										<th>AÇÕES</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Wesley Freitas</td>
-										<td>email@email.com</td>
-										<td>(85) 99999-9999</td>
-									</tr>
-									<tr>
-										<td>Micchell Oliveira</td>
-										<td>email@email.com</td>
-										<td>(85) 99999-9999</td>
-									</tr>
-									<tr>
-										<td>Luciano Buenno</td>
-										<td>email@email.com</td>
-										<td>(85) 99999-9999</td>
-									</tr>
-
+									<% integrations.forEach(integration=> { %>
+										<tr>
+											<td>
+												<%= integration.id %>
+											</td>
+											<td>
+												<%= integration.name %>
+											</td>
+											<td><button type="button" class="btn btn-primary">Editar</button></td>
+										</tr>
+										<% }) %>
 								</tbody>
 							</table>
 						</div>

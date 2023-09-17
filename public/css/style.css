@@ -18,12 +18,12 @@ body {
 
 .sidenav {
   height: 100%;
-  width: 300px;
+  width: 210px;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #c8a2c8;
+  background-color: #966996;
   overflow: hidden;
   padding-top: 30px;
   transition: ease-in-out 0.3s;
@@ -54,13 +54,13 @@ body {
   padding: 15px 8px 15px 32px;
   text-decoration: none;
   font-size: 20px;
-  color: #d8d8d8;
+  color: #fff;
   display: block;
 }
 
 .sidenav a:hover {
-  color: #1f2849;
-  background-color: #2c3a6e;
+  color: #e5e5e5;
+  background-color: #e6c6e6;
 }
 
 .sidenav {
@@ -238,7 +238,7 @@ body {
   background-color: white;
   padding: 13px;
   border-radius: 21px;
-  color: #6c7293;
+  color: #96699f;
   cursor: pointer;
 }
 
@@ -281,7 +281,7 @@ body {
 }
 
 .box p {
-  color: #6c7293;
+  color: black;
   font-weight: 500;
   padding-left: 10px;
 }
@@ -296,23 +296,24 @@ body {
   margin: 0px;
   font-size: 14px;
   color: #37bf37 !important;
+  padding-top: 8px;
 }
 
 .percent span {
   font-size: 12px;
-  color: #9398b1;
+  color: black;
   padding-left: 3px;
 }
 
 .head-1 {
   font-size: 18px !important;
   margin: 10px 0px;
-  color: #6c7293;
+  color: black;
 }
 
 .head-1 span {
   float: right;
-  background-color: #1f2849;
+  background-color: #96699f;
   color: white;
   padding: 3px 10px;
   font-size: 15px;
@@ -321,7 +322,7 @@ body {
 .box-icon {
   font-size: 20px !important;
   margin-top: 35px !important;
-  color: #1f2849;
+  color: #96699f;
   padding-right: 10px;
   background-color: #efeff5;
   padding: 15px;
@@ -333,7 +334,7 @@ body {
 
 .box-1 {
   width: 88%;
-  height: 282px;
+  height: 300px;
   background-color: #ffffff;
   margin-left: 10px;
   padding: 10px;
@@ -342,13 +343,13 @@ body {
 }
 
 .m-box {
-  color: #6c7293;
+  color: black;
   position: relative;
   padding: 0px 12px;
 }
 
 .active {
-  background-color: #5646ff;
+  background-color: #96699f;
   color: white;
   box-shadow: 4px 3px 7px 3px #3226ad54;
 }
@@ -376,7 +377,7 @@ body {
 
 .act-p {
   font-size: 13px;
-  color: #6c7293;
+  color: black;
 }
 
 .act-p .fa {
@@ -392,7 +393,7 @@ body {
 }
 
 .col-div-4 {
-  width: 30%;
+  width: 33.3%;
   float: left;
 }
 
@@ -403,12 +404,12 @@ body {
 .content-box p {
   margin: 0px;
   font-size: 20px;
-  color: #6c7293;
+  color: black;
 }
 
 .content-box p span {
   float: right;
-  background-color: #1f2849;
+  background-color: #96699f;
   color: white;
   padding: 3px 10px;
   font-size: 15px;
@@ -424,7 +425,7 @@ body {
 .nav {
   font-size: 30px;
   cursor: pointer;
-  color: #6c7293;
+  color: #96699f;
   margin: 11px 0px;
 }
 
@@ -436,7 +437,7 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  color: #6c88be;
+  color: black;
 }
 
 td,
@@ -448,14 +449,14 @@ th {
 
 tr:nth-child(even) {
   background-color: #1f284929;
-  color: #6c7293 !important;
+  color: #96699f !important;
 }
 
 .circle-wrap {
   margin: 50px auto;
   width: 150px;
   height: 150px;
-  background: #e6e2e7;
+  background: #e5e5e5;
   border-radius: 50%;
 }
 
@@ -473,7 +474,7 @@ tr:nth-child(even) {
 
 .circle-wrap .circle .mask .fill {
   clip: rect(0px, 75px, 150px, 0px);
-  background-color: #5646ff;
+  background-color: #96699f;
 }
 
 .circle-wrap .circle .mask.full,
@@ -505,5 +506,5 @@ tr:nth-child(even) {
   z-index: 100;
   font-weight: 700;
   font-size: 2em;
-  color: #6c7293;
+  color: #96699f;
 }

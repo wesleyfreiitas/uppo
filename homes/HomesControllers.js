@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const Integration = require("../integration/Integration")
 const userAuth = require("../middleware/userAuth");
-const User = require("../users/User");
 
 router.get("/",(req, res)=>{
     res.render("users/login")
 })
 
+// router.get("/dashboard", userAuth, (req, res) => {
+// console.log(req.session.user)
+//     res.render("dashboard", req.session.user)
+// });
 router.get("/dashboard", userAuth, (req, res) => {
-
-
-    res.render("dashboard", req.session.user)
-
-
+    Integration.findAll().then(integrations => {
+       console.log( { integrations: integrations, name :req.session.user })
+        res.render("dashboard",{ integrations: integrations, user:req.session.user })
+      })
 });
 
 // router.get("/admin/articles/new", userAuth ,(req ,res) => {
