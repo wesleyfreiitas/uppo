@@ -15,6 +15,9 @@ const User = connection.define('users', {
     }, password: {
         type: Sequelize.STRING,
         allowNull: false
+    }, tokenRefresh: {
+        type: Sequelize.STRING,
+        allowNull: true
     }
 })
 

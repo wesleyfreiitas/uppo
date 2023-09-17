@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("./User");
 const bcrypt = require('bcryptjs');
 
+const nodemailer = require("nodemailer");
+
 //Direcionar para criar usuario
 
 router.get("/signup", (req, res) => {
@@ -11,9 +13,108 @@ router.get("/signup", (req, res) => {
     })
 })
 router.get("/remember", (req, res) => {
-    User.findAll().then(users => {
-        res.render("users/remember")
+
+    res.render("users/remember")
+
+})
+
+router.post("/reset", (req, res) => {
+    const { password, token } = req.body;
+    console.log(token + "  " + password)
+    User.findOne(
+        {
+            where: { tokenRefresh: token }
+        }
+    ).then(user => {
+
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(password, salt);
+
+        User.update({ tokenRefresh: "", password: hash },
+            { where: { tokenRefresh: token } })
+            .then(() => {
+                res.redirect("/login");
+            }).catch((err) => {
+                console.log(err)
+                res.redirect("/signup")
+            })
+
+    }).catch((e) => { console.log(e) });
+
+})
+
+router.get("/remember/:token", (req, res) => {
+    const token = req.params.token;
+
+    User.findOne(
+        {
+            where: {
+                tokenRefresh: token
+            }
+        }
+    ).then(user => {
+        if (user == undefined) {
+            console.log("Email não encontrado")
+        } else {
+            res.render("users/senha", { token: token })
+        }
+    }).catch((e) => {
+        console.log(e)
     })
+
+})
+
+router.post("/remember", (req, res) => {
+    const email = req.body.email;
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(email + Date.now(), salt).replaceAll("/", "");
+    User.findOne(
+        {
+            where: { email: email }
+        }
+    ).then(user => {
+        if (user == undefined) {
+            console.log("Email não encontrado")
+        } else {
+
+            User.update({ email: email, tokenRefresh: hash }, { where: { email: email } })
+                .then(() => {
+                    var link = `http://localhost:3000/remember/${hash}`
+
+                    let transporter = nodemailer.createTransport({
+                        host: "smtp.gmail.com",
+                        port: 587,
+                        secure: false,
+                        auth: {
+                            user: "wesleydefreiitas01@gmail.com",
+                            pass: "otqz hwom clbl exsb"
+                        }
+                    });
+
+                    // otqz hwom clbl exsb
+
+                    function sendMail(link, to) {
+                        const text = `Notamos que houve um acesso a sua conta, este é o link de redefinição de senha ${link}`;
+                        transporter.sendMail({
+                            from: "Wesley Freitas <wesleydefreiitas01@gmail.com>",
+                            to: to,
+                            subject: "Redefinir senha - UPPON",
+                            text: text
+                        }).then(message => {
+                            console.log(message)
+                            res.redirect("/login")
+                        }).catch(err => {
+                            console.log(err)
+                        })
+                    }
+                    sendMail(link, email)
+                })
+                .catch((e) => { })
+
+        }
+
+    })
+
 })
 
 // Signup usuários
@@ -23,7 +124,6 @@ router.post("/users/create", (req, res) => {
     var email = req.body.email;
     var phone = req.body.phone;
     var password = req.body.password;
-    // res.json({name,email, password});
     User.findOne(
         {
             where: { email: email }
@@ -59,29 +159,29 @@ router.get("/login", (req, res) => {
 
 // Faz login
 
-router.post("/authenticate",(req,res) => {
+router.post("/authenticate", (req, res) => {
     var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
 
-    User.findOne({where: {email:email}}).then(user => {
+    User.findOne({ where: { email: email } }).then(user => {
         //Verifica se existe um email com esse usuário
-        if(user != undefined){
+        if (user != undefined) {
             //Valida a senha
-            var correct = bcrypt.compareSync(password,user.password);
+            var correct = bcrypt.compareSync(password, user.password);
 
-            if(correct){
+            if (correct) {
                 req.session.user = {
                     name: user.name,
                     id: user.id,
                     email: user.email
                 }
                 res.redirect("/dashboard");
-            }else{
-                res.redirect("/login"); 
+            } else {
+                res.redirect("/login");
             }
 
-        }else{
+        } else {
             res.redirect("/login");
         }
     });

@@ -1,0 +1,26 @@
+<%- include('../partials/header'); -%>
+
+    <div class="container">
+        <!-- <hr>  -->
+        <div class="card mt-5">
+            <div class="card-header">
+                <h2 style="text-align: center; color: blueviolet;">Nova senha</h2>
+            </div>
+            <div class="card-body">
+                <form action="/reset" method="POST">
+                    <input class="form-control" name="password" type="password" placeholder="******"><br>
+                    <input class="form-control" name="confirm_password" type="password" placeholder="******"><br>
+
+                    
+                        <input class="form-control" name="token" type="hidden" value=<%= token %>><br>
+                        
+
+                            <button type="submit" class="btn btn-secondary btn-block">Confirmar</button>
+                </form>
+                <div style="text-align: center;"><a href="/remember">Esqueceu a senha?</a> <a href="/signup">Signup</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer'); -%>

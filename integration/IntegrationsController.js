@@ -96,24 +96,25 @@ router.post("/integrations/create", userAuth, (req, res) => {
         "parameters": {
           "method": "POST",
           "url": "https://api.siprov.com.br/siprov-api/ext/autenticacao",
-          "authentication": "genericCredentialType",
-          "genericAuthType": "httpBasicAuth",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Authorization",
+                "value": "Basic "+t_siprov
+              }
+            ]
+          },
           "options": {}
         },
-        "id": "2b98c6ca-f61f-482d-9456-1230b91259e8",
+        "id": "d53119db-38db-4e0e-8f9a-295cb970f611",
         "name": "AUTENTICAÇÃO",
         "type": "n8n-nodes-base.httpRequest",
         "typeVersion": 3,
         "position": [
-          2080,
-          460
-        ],
-        "credentials": {
-          "httpBasicAuth": {
-            "id": "3",
-            "name": "Unnamed credential"
-          }
-        }
+          120,
+          220
+        ]
       },
       {
         "parameters": {
@@ -222,8 +223,8 @@ router.post("/integrations/create", userAuth, (req, res) => {
             "interval": [
               {
                 "field": "months",
-                "triggerAtDayOfMonth": diaDoMes,
-                "triggerAtHour": horaDoDia
+                "triggerAtDayOfMonth": parseInt(diaDoMes),
+                "triggerAtHour": parseInt(horaDoDia)
               }
             ]
           }
@@ -400,7 +401,7 @@ router.post("/integrations/create", userAuth, (req, res) => {
         "main": [
           [
             {
-              "node": "HTTP Request2",
+              "node": "HTTP Request1",
               "type": "main",
               "index": 0
             }

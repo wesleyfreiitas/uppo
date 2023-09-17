@@ -41,6 +41,6 @@ app.use("/",usersController);
 app.use("/",homesController);
 app.use("/",integrationController);
 
-app.listen(3001, (req,res) => {
+app.listen(3000, (req,res) => {
     console.log("O servidor está rodando!")
 })

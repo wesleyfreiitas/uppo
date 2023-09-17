@@ -7,10 +7,6 @@ router.get("/",(req, res)=>{
     res.render("users/login")
 })
 
-// router.get("/dashboard", userAuth, (req, res) => {
-// console.log(req.session.user)
-//     res.render("dashboard", req.session.user)
-// });
 router.get("/dashboard", userAuth, (req, res) => {
     Integration.findAll().then(integrations => {
        console.log( { integrations: integrations, name :req.session.user })
