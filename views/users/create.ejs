@@ -1,21 +1,30 @@
 <%- include('../partials/header'); -%>
 
-<div class="container">
-    <!-- <hr>  -->
-    <div class="card mt-5">
-        <div class="card-header">
-            <h2 style="text-align: center;">Criar usuário</h2>
-        </div>
-        <div class="card-body">
-            <form action="/users/create" method="POST">
-                <input class="form-control" name="name" type="text" placeholder="Fulano"><br>
-                <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
-                <input class="form-control" name="password" type="password" placeholder="Senha"><br>
-                <input class="form-control" name="phone" type="text" placeholder="Informe seu WhatsApp  "><br>
-                <button type="submit" class="btn btn-secondary btn-block">Criar</button>
-            </form>
+    <div class="container">
+        <!-- <hr>  -->
+        <div class="card mt-5">
+            <div class="card-header">
+                <h2 style="text-align: center;">Criar conta</h2>
+            </div>
+            <div class="card-body">
+                <form action="/users/create" method="POST">
+                    <input class="form-control" name="name" type="text" placeholder="Fulano"><br>
+                    <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
+                    <div class="input-container">
+                        <input class="form-control" name="phone" id="phoneInput" type="text"
+                            placeholder="Informe o WhatsApp" maxlength="17"><br>
+                        <span class="check-icon" id="checkIcon"></span>
+                    </div>
+                    <div>
+                        <input class="form-control" name="password" id="senha" type="password" placeholder="Senha">
+                        <%- include('../partials/forca_de_senha'); -%>
+                    </div><br>
+                    <button type="submit" class="btn btn-secondary btn-block">Criar conta</button>
+                    <a href="/login">Já tenho conta</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<%- include('../partials/footer'); -%>
+    <%- include('../partials/mascara_wpp'); -%>
+        <%- include('../partials/footer'); -%>

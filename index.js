@@ -21,6 +21,7 @@ app.use(session({
 
 // Static
 app.use(express.static('public'));
+app.use("/favicon.ico", express.static("images/favicon.ico"))
 
 //Body parser
 app.use(bodyParser.urlencoded({extended: false}));

@@ -1,12 +1,32 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js" ></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script>
-    let table = new DataTable('#automation');
+    let senhaInput = document.getElementById('password');
+    let iconeOlho = document.getElementById('iconeOlho');
+
+    function mostrarSenha() {
+        if (senhaInput.type === 'password') {
+            senhaInput.type = 'text';
+            iconeOlho.className = 'fa fa-eye';
+        } else {
+            senhaInput.type = 'password';
+            iconeOlho.className = 'fa fa-eye-slash';
+        }
+    }
+
     $(".menu").click(function () {
         $("#mySidenav").css('width', '70px');
         $("#main").css('margin-left', '70px');
@@ -44,17 +64,71 @@
             $(".notification-div").toggle();
         });
 
+    });
 
 
+    document.addEventListener('DOMContentLoaded', function () {
+        let table = new DataTable('#automation')
+    })
 
+
+</script>
+<script>
+    var percentage = 0;
+
+    function check(n, m) {
+        if (n < 6) {
+            percentage = 0;
+            $(".progress-bar").css("background", "#dd4b39");
+        } else if (n < 8) {
+            percentage = 20;
+            $(".progress-bar").css("background", "#9c27b0");
+        } else if (n < 10) {
+            percentage = 40;
+            $(".progress-bar").css("background", "#ff9800");
+        } else {
+            percentage = 60;
+            $(".progress-bar").css("background", "#4caf50");
+        }
+
+        // Check for the character-set constraints
+        // and update percentage variable as needed.
+
+        //Lowercase Words only
+        if ((m.match(/[a-z]/) != null)) {
+            percentage += 10;
+        }
+
+        //Uppercase Words only
+        if ((m.match(/[A-Z]/) != null)) {
+            percentage += 10;
+        }
+
+        //Digits only
+        if ((m.match(/0|1|2|3|4|5|6|7|8|9/) != null)) {
+            percentage += 10;
+        }
+
+        //Special characters
+        if ((m.match(/\W/) != null) && (m.match(/\D/) != null)) {
+            percentage += 10;
+        }
+
+        // Update the width of the progress bar
+        $(".progress-bar").css("width", percentage + "%");
+    }
+
+    // Update progress bar as per the input
+    $(document).ready(function () {
+        // Whenever the key is pressed, apply condition checks. 
+        $("#senha").keyup(function () {
+            var m = $(this).val();
+            var n = m.length;
+
+            // Function for checking
+            check(n, m);
+        });
     });
 </script>
-<!-- <script>
-    function createWorkflow(integration_siprov) {
-    return fetch(`http://localhost:3000/api/integrations`, {
-      method: "GET"
-    })
-      .then(response => response.json())
-  }
-</script> -->
+
 </html>

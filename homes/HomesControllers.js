@@ -14,6 +14,13 @@ router.get("/dashboard", userAuth, (req, res) => {
       })
 });
 
+router.get("/executions", userAuth, (req, res) => {
+    Integration.findAll().then(integrations => {
+       console.log( { integrations: integrations, name :req.session.user })
+        res.render("executions",{ integrations: integrations, user:req.session.user })
+      })
+});
+
 // router.get("/admin/articles/new", userAuth ,(req ,res) => {
 //     Category.findAll().then(categories => {
 //         res.render("admin/articles/new",{categories: categories})

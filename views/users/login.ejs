@@ -1,20 +1,37 @@
 <%- include('../partials/header'); -%>
+    <style>
+        .senha-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
 
-<div class="container">
-    <!-- <hr>  -->
-    <div class="card mt-5">
-        <div class="card-header">
-            <h2 style="text-align: center; color: blueviolet;">Login</h2>
-        </div>
-        <div class="card-body">
-            <form action="/authenticate" method="POST">
-                <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
-                <input class="form-control" name="password" type="password" placeholder="******"><br>
-                <button type="submit" class="btn btn-secondary btn-block">Logar</button>
-            </form>
-            <div style="text-align: center;"><a href="/remember">Esqueceu a senha?</a> <a href="/signup">Signup</a></div>
+        #iconeOlho {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+    <div class="container">
+        <!-- <hr>  -->
+        <div class="card mt-5">
+            <div class="card-header">
+                <h2 style="text-align: center; color: blueviolet;">Login</h2>
+            </div>
+            <div class="card-body">
+                <form action="/authenticate" method="POST">
+                    <input class="form-control" name="email" type="email" placeholder="email@exemplo.com"><br>
+                    <div class="senha-container">
+                        <input class="form-control" name="password" type="password" id="password"
+                            placeholder="******"><br>
+                        <i id="iconeOlho" class="fa fa-eye-slash" onclick="mostrarSenha()"></i>
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-block">Logar</button>
+                </form>
+                <div style="text-align: center;"><a href="/remember">Esqueceu a senha?</a> <a href="/signup">Criar
+                        conta</a></div>
+            </div>
         </div>
     </div>
-</div>
 
-<%- include('../partials/footer'); -%>
+    <%- include('../partials/footer'); -%>
