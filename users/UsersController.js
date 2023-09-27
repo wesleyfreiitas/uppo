@@ -141,6 +141,78 @@ router.post("/users/create", (req, res) => {
                 phone: phone,
                 password: hash
             }).then(() => {
+
+                messageWhatsApp = `Olá ${name},
+
+                Que bom ter você por aqui 🙂
+                
+                Sua conta no Uppon foi criada com sucesso!
+                
+                Acesse o nosso canal e saiba mais youtube.com/uppon
+                
+                Tem alguma dúvida?`;
+
+                assunto = "Uppon - Conta criada com sucesso";
+
+                messageEmail = `Olá ${name},
+
+                Que bom ter você por aqui 🙂
+                
+                Sua conta no Uppon foi criada com sucesso!
+                
+                Acesse o nosso canal e saiba mais youtube.com/uppon
+                
+                Precisando pode chamar a nossa equipe no WhatsApp
+                
+                link do WhatsApp: https://wa.me/5585996310234
+                
+                Equipe Uppon`;
+
+                //URL do cliente
+                const host = "https://api.wppchat.com.br";
+                //Token
+                const token = "Bearer TESTE";
+                //Dados do agente
+                const body = {
+                    "number": phone,
+                    "body": messageWhatsApp
+                }
+                
+                //Função que envia msg
+
+                async function sendMessageWpp(body, token) {
+                    const response = await fetch(`${host}/api/messages/send`, {
+                        method: "POST",
+                        body: JSON.stringify(body),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": token
+                        }
+                    })
+
+                    const data = await response.json();
+
+                    var token = data.token;
+                }
+                
+                async function sendMessageWpp(body, token) {
+                    const response = await fetch(`${host}/api/messages/send`, {
+                        method: "POST",
+                        body: JSON.stringify(body),
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": token
+                        }
+                    })
+
+                    const data = await response.json();
+
+                    var token = data.token;
+                }
+
+                sendMessageWpp(body, token);
+                sendMessageEmail();
+
                 res.redirect("/login");
             }).catch((err) => {
                 res.redirect("/signup")
