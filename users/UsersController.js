@@ -142,19 +142,15 @@ router.post("/users/create", (req, res) => {
                 password: hash
             }).then(() => {
 
-                messageWhatsApp = `Olá ${name},
-
-                Que bom ter você por aqui 🙂
-                
-                Sua conta no Uppon foi criada com sucesso!
-                
+                messageWhatsApp = `Olá ${name}, que bom ter você por aqui 🙂. Sua conta no Uppon foi criada com sucesso!               
                 Acesse o nosso canal e saiba mais youtube.com/uppon
                 
-                Tem alguma dúvida?`;
+                Tem alguma dúvida?`
 
-                assunto = "Uppon - Conta criada com sucesso";
+                subject = "Uppon - Conta criada com sucesso";
 
-                messageEmail = `Olá ${name},
+                text = `
+                Olá ${name},
 
                 Que bom ter você por aqui 🙂
                 
@@ -177,7 +173,7 @@ router.post("/users/create", (req, res) => {
                     "number": phone,
                     "body": messageWhatsApp
                 }
-                
+
                 //Função que envia msg
 
                 async function sendMessageWpp(body, token) {
@@ -193,27 +189,39 @@ router.post("/users/create", (req, res) => {
                     const data = await response.json();
 
                     var token = data.token;
-                }
-                
-                async function sendMessageWpp(body, token) {
-                    const response = await fetch(`${host}/api/messages/send`, {
-                        method: "POST",
-                        body: JSON.stringify(body),
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": token
+
+
+                    transporter = nodemailer.createTransport({
+                        host: "smtp.gmail.com",
+                        port: 587,
+                        secure: false,
+                        auth: {
+                            user: "wesleydefreiitas01@gmail.com",
+                            pass: "otqz hwom clbl exsb"
                         }
-                    })
+                    });
 
-                    const data = await response.json();
+                    // otqz hwom clbl exsb
 
-                    var token = data.token;
+                    function sendMail(subject, to, text) {
+                        console.log({subject:subject, to:to, text:text})
+                        transporter.sendMail({
+                            from: "Wesley Freitas <wesleydefreiitas01@gmail.com>",
+                            to: to,
+                            subject: subject,
+                            text: text
+                        }).then(message => {
+                            console.log(message)
+                            res.redirect("/login")
+                        }).catch(err => {
+                            console.log(err)
+                        })
+                    }
+
+                    sendMail(subject, email, text);
                 }
-
                 sendMessageWpp(body, token);
-                sendMessageEmail();
 
-                res.redirect("/login");
             }).catch((err) => {
                 res.redirect("/signup")
             })
