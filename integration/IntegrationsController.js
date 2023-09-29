@@ -5,7 +5,7 @@ const Integration = require("./Integration")
 
 
 router.get("/integrations", userAuth, (req, res) => {
-  res.render("integrations/index", {user: req.session.user})
+  res.render("integrations/index", { user: req.session.user })
 })
 
 // router.get("/api/integrations",  (req, res) => {
@@ -101,7 +101,7 @@ router.post("/integrations/create", userAuth, (req, res) => {
             "parameters": [
               {
                 "name": "Authorization",
-                "value": "Basic "+t_siprov
+                "value": "Basic " + t_siprov
               }
             ]
           },
@@ -240,7 +240,7 @@ router.post("/integrations/create", userAuth, (req, res) => {
       },
       {
         "parameters": {
-          "url": "https://"+url+"/api/v4/message/send",
+          "url": "https://" + url + "/api/v4/message/send",
           "sendQuery": true,
           "queryParameters": {
             "parameters": [
@@ -412,14 +412,14 @@ router.post("/integrations/create", userAuth, (req, res) => {
     "settings": {}
   }
   Integration.create({
-      name: description,
-      json: JSON.stringify(integration_siprov)
-    }).then(() => {
-  createWorkflow(integration_siprov).then((response)=>activeWorkflow(response.id))
-        
-      }).catch((err) => {
-        res.redirect("/")
-      })
+    name: description,
+    json: JSON.stringify(integration_siprov)
+  }).then(() => {
+    createWorkflow(integration_siprov).then((response) => activeWorkflow(response.id))
+
+  }).catch((err) => {
+    res.redirect("/")
+  })
 
   function createWorkflow(integration_siprov) {
     return fetch(`https://wpp-api.micchelloliveira.com/api/v1/workflows`, {

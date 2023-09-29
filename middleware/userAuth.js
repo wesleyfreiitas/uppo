@@ -1,9 +1,9 @@
-function userAuth(req, res, next){
-    if(req.session.user != undefined){
+function userAuth(req, res, next) {
+    if (req.session.user != undefined) {
         next();
-    }else{
+    } else {
         res.redirect("/login");
     }
- }
- 
- module.exports = userAuth
+}
+
+module.exports = userAuth

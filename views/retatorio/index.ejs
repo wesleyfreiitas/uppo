@@ -7,13 +7,19 @@
         </tr>
     </thead>
     <tbody>
-        <% integrations.forEach(integration => { %>
+        <% integrations.forEach(integration=> { %>
             <tr>
-                <td><%= integration.id %></td>
-                <td><%= integration.descricao %></td>
-                <td><%= integration.execution %></td>
+                <td>
+                    <%= integration.id %>
+                </td>
+                <td>
+                    <%= integration.descricao %>
+                </td>
+                <td>
+                    <%= integration.execution %>
+                </td>
             </tr>
-        <% }) %>
+            <% }) %>
 
     </tbody>
 </table>

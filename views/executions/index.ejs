@@ -1,61 +1,61 @@
+<%- include('../partials/header'); -%>
 
-	<%- include('../partials/header'); -%>
+	<%- include('../partials/navbar'); -%>
 
-		<%- include('../partials/navbar'); -%>
-		
 		<div id="main">
 
-				<div class="clearfix"></div>
+			<div class="clearfix"></div>
 
-				<div class="col-div-4-1">
-					<div class="box">
-						<p class="head-1">Execuções</p>
-						<p class="number"> <%- executions.length -%></p>
-						<i class="fa fa-circle-o-notch box-icon"></i>
-					</div>
+			<div class="col-div-4-1">
+				<div class="box">
+					<p class="head-1">Execuções</p>
+					<p class="number"> <%- executions.length -%></p>
+					<i class="fa fa-circle-o-notch box-icon"></i>
 				</div>
-				<div class="col-div-4-1">
-					<div class="box">
-						<p class="head-1">Mensagens enviadas</p>
-						<p class="number"> <%- executions.length -%></p>
-						<i class="fa fa-shopping-bag box-icon"></i>
-					</div>
+			</div>
+			<div class="col-div-4-1">
+				<div class="box">
+					<p class="head-1">Mensagens enviadas</p>
+					<p class="number"> <%- executions.length -%></p>
+					<i class="fa fa-shopping-bag box-icon"></i>
 				</div>
-
-				<div class="clearfix"></div>
-				<hr />
-				<div class="col-div-12">
-					<div class="box-8">
-						<div class="content-box">
-							<h4>Lista de execuções</h4>
-							<!-- <br /> -->
-							<table id="automation" class="display">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>DATA</th>
-										<th>AÇÕES</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% executions.forEach(execution=> { %>
-										<tr>
-											<td>
-												<%= execution.id %>
-											</td>
-											<td>
-												<%= execution.date_and_time %>
-												
-											</td>
-											<td><button type="button" class="btn btn-primary">Baixar lista enviada</button></td>
-										</tr>
-										<% }) %>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
 			</div>
 
-			<%- include('../partials/footer'); -%>
+			<div class="clearfix"></div>
+			<hr />
+			<div class="col-div-12">
+				<div class="box-8">
+					<div class="content-box">
+						<h4>Lista de execuções</h4>
+						<!-- <br /> -->
+						<table id="automation" class="display">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>DATA</th>
+									<th>AÇÕES</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% executions.forEach(execution=> { %>
+									<tr>
+										<td>
+											<%= execution.id %>
+										</td>
+										<td>
+											<%= execution.date_and_time %>
+
+										</td>
+										<td><button type="button" class="btn btn-primary">Baixar lista enviada</button>
+										</td>
+									</tr>
+									<% }) %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<%- include('../partials/footer'); -%>

@@ -12,7 +12,7 @@ const executionController = require("./executions/ExecutionsController");
 const User = require('./users/User');
 
 // View engine
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 
 // Sessions
 
@@ -25,7 +25,7 @@ app.use(express.static(__dirname + '/public'));
 app.use("/favicon.ico", express.static("images/favicon.ico"))
 
 //Body parser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Database
@@ -39,11 +39,11 @@ connection
     })
 
 
-app.use("/",usersController);
-app.use("/",homesController);
-app.use("/",integrationController);
-app.use("/",executionController);
+app.use("/", usersController);
+app.use("/", homesController);
+app.use("/", integrationController);
+app.use("/", executionController);
 
-app.listen(3000, (req,res) => {
+app.listen(3000, (req, res) => {
     console.log("O servidor está rodando!")
 })

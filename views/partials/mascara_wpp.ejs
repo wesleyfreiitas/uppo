@@ -1,47 +1,46 @@
 <script>
-    // Obtém o elemento de entrada e o ícone de verificação
-    const phoneInput = document.getElementById('phoneInput');
-    const checkIcon = document.getElementById('checkIcon');
-  
-    // Adiciona um ouvinte de evento para o evento de entrada de teclado
-    phoneInput.addEventListener('input', function() {
-      // Obtém o valor atual do campo de entrada
-      let phoneNumber = phoneInput.value;
-  
-      // Remove todos os caracteres não numéricos
-      phoneNumber = phoneNumber.replace(/\D/g, '');
-  
-      // Garante que o número não tenha mais de 11 dígitos
-      if (phoneNumber.length > 11) {
-        phoneNumber = phoneNumber.slice(0, 11);
-      }
-  
-      // Aplica a máscara (xx) xxxxx - xxxx
-      let maskedPhoneNumber = '';
-  
-      for (let i = 0; i < phoneNumber.length; i++) {
-        if (i === 0) {
-          maskedPhoneNumber += `(${phoneNumber[i]}`;
-        } else if (i === 1) {
-          maskedPhoneNumber += `${phoneNumber[i]}) `;
-        } else if (i === 7) {
-          maskedPhoneNumber += ` - ${phoneNumber[i]}`;
-        } else {
-          maskedPhoneNumber += phoneNumber[i];
-        }
-      }
-  
-      // Define o valor do campo de entrada com a máscara aplicada
-      phoneInput.value = maskedPhoneNumber;
-  
-      // Verifica se o número está completo (17 caracteres) e atualiza a classe .valid
-      if (phoneNumber.length === 11) {
-        phoneInput.classList.add('valid'); // Adiciona a classe .valid
-        checkIcon.innerHTML = '<i class="fas fa-check"></i>'; // Adiciona o ícone de verificação
+  // Obtém o elemento de entrada e o ícone de verificação
+  const phoneInput = document.getElementById('phoneInput');
+  const checkIcon = document.getElementById('checkIcon');
+
+  // Adiciona um ouvinte de evento para o evento de entrada de teclado
+  phoneInput.addEventListener('input', function () {
+    // Obtém o valor atual do campo de entrada
+    let phoneNumber = phoneInput.value;
+
+    // Remove todos os caracteres não numéricos
+    phoneNumber = phoneNumber.replace(/\D/g, '');
+
+    // Garante que o número não tenha mais de 11 dígitos
+    if (phoneNumber.length > 11) {
+      phoneNumber = phoneNumber.slice(0, 11);
+    }
+
+    // Aplica a máscara (xx) xxxxx - xxxx
+    let maskedPhoneNumber = '';
+
+    for (let i = 0; i < phoneNumber.length; i++) {
+      if (i === 0) {
+        maskedPhoneNumber += `(${phoneNumber[i]}`;
+      } else if (i === 1) {
+        maskedPhoneNumber += `${phoneNumber[i]}) `;
+      } else if (i === 7) {
+        maskedPhoneNumber += ` - ${phoneNumber[i]}`;
       } else {
-        phoneInput.classList.remove('valid'); // Remove a classe .valid
-        checkIcon.innerHTML = ''; // Remove o ícone de verificação
+        maskedPhoneNumber += phoneNumber[i];
       }
-    });
-  </script>
-  
+    }
+
+    // Define o valor do campo de entrada com a máscara aplicada
+    phoneInput.value = maskedPhoneNumber;
+
+    // Verifica se o número está completo (17 caracteres) e atualiza a classe .valid
+    if (phoneNumber.length === 11) {
+      phoneInput.classList.add('valid'); // Adiciona a classe .valid
+      checkIcon.innerHTML = '<i class="fas fa-check"></i>'; // Adiciona o ícone de verificação
+    } else {
+      phoneInput.classList.remove('valid'); // Remove a classe .valid
+      checkIcon.innerHTML = ''; // Remove o ícone de verificação
+    }
+  });
+</script>

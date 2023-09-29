@@ -204,7 +204,7 @@ router.post("/users/create", (req, res) => {
                     // otqz hwom clbl exsb
 
                     function sendMail(subject, to, text) {
-                        console.log({subject:subject, to:to, text:text})
+                        console.log({ subject: subject, to: to, text: text })
                         transporter.sendMail({
                             from: "Wesley Freitas <wesleydefreiitas01@gmail.com>",
                             to: to,

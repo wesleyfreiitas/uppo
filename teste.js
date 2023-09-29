@@ -300,4 +300,4 @@
 
 const wpp = "+5585996310234"
 
-console.log(wpp.replace(/[^0-9]+/g,''))
+console.log(wpp.replace(/[^0-9]+/g, ''))

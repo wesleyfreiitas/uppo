@@ -11,7 +11,7 @@ const User = connection.define('users', {
     }, phone: {
         type: Sequelize.STRING,
         allowNull: false
-    
+
     }, password: {
         type: Sequelize.STRING,
         allowNull: false
