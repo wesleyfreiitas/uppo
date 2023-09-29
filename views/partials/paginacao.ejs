@@ -1,0 +1,65 @@
+<script>
+    function toggleMessage(button) {
+        const messageContainer = button.parentElement;
+        const messageContent = messageContainer.querySelector('.message-content');
+
+        if (messageContent.style.maxHeight) {
+            messageContent.style.maxHeight = null;
+        } else {
+            messageContent.style.maxHeight = messageContent.scrollHeight + "px";
+        }
+    }
+
+    let currentPage = 1;
+    const pageSize = 30;
+
+    // const executions = <%= JSON.stringify(executions) %>
+
+    function displayPage(page) {
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const pageExecutions = executions.slice(startIndex, endIndex);
+
+        const tbody = document.querySelector('tbody');
+        tbody.innerHTML = '';
+
+        pageExecutions.forEach(execution => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+          <td>${execution.id}</td>
+          <td>${execution.name}</td>
+          <td>${execution.numero}</td>
+          <td>${execution.date_and_time}</td>
+          <td>
+            <select class="message-dropdown" onchange="showMessage(this)">
+              <option value="" disabled selected>Selecione a Mensagem</option>
+              <option value="${execution.message}">${execution.message}</option>
+            </select>
+          </td>
+        `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function nextPage() {
+        currentPage++;
+        displayPage(currentPage);
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+        }
+    }
+
+    function showMessage(selectElement) {
+        const message = selectElement.value;
+        if (message) {
+            alert(`Conteúdo da Mensagem: ${message}`);
+        }
+    }
+
+    // Mostrar a primeira página ao carregar
+    displayPage(currentPage);
+</script>

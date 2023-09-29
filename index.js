@@ -7,6 +7,7 @@ const connection = require("./database/database");
 const usersController = require("./users/UsersController");
 const homesController = require("./homes/HomesControllers");
 const integrationController = require("./integration/IntegrationsController");
+const executionController = require("./executions/ExecutionsController");
 
 const User = require('./users/User');
 
@@ -20,7 +21,7 @@ app.use(session({
 }))
 
 // Static
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use("/favicon.ico", express.static("images/favicon.ico"))
 
 //Body parser
@@ -41,6 +42,7 @@ connection
 app.use("/",usersController);
 app.use("/",homesController);
 app.use("/",integrationController);
+app.use("/",executionController);
 
 app.listen(3000, (req,res) => {
     console.log("O servidor está rodando!")

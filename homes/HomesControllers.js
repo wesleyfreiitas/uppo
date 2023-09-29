@@ -1,25 +1,41 @@
 const express = require("express");
 const router = express.Router();
 const Integration = require("../integration/Integration")
+const Execution = require("../executions/Execution")
 const userAuth = require("../middleware/userAuth");
 
-router.get("/",(req, res)=>{
+router.get("/", (req, res) => {
     res.render("users/login")
 })
 
+router.get("/executions/:id", userAuth, (req, res) => {
+
+    var id = req.params.id;
+    Execution.findAll({
+        where: {
+            integrationId: id
+        }
+    }).then(executions => {
+        res.render("executions/list", { executions: executions, user: req.session.user })
+    })
+})
+
 router.get("/dashboard", userAuth, (req, res) => {
-    Integration.findAll().then(integrations => {
-       console.log( { integrations: integrations, name :req.session.user })
-        res.render("dashboard",{ integrations: integrations, user:req.session.user })
-      })
+    Execution.findAll().then(executions => {
+
+        Integration.findAll().then(integrations => {
+            console.log({ integrations: integrations, executions: executions, user: req.session.user })
+            res.render("dashboard", { integrations: integrations, executions: executions, user: req.session.user })
+        })
+    })
 });
 
-router.get("/executions", userAuth, (req, res) => {
-    Integration.findAll().then(integrations => {
-       console.log( { integrations: integrations, name :req.session.user })
-        res.render("executions",{ integrations: integrations, user:req.session.user })
-      })
-});
+// router.get("/executions", userAuth, (req, res) => {
+//     Integration.findAll().then(integrations => {
+//        console.log( { integrations: integrations, name :req.session.user })
+//         res.render("executions",{ integrations: integrations, user:req.session.user })
+//       })
+// });
 
 // router.get("/admin/articles/new", userAuth ,(req ,res) => {
 //     Category.findAll().then(categories => {

@@ -11,21 +11,21 @@
 				<div class="col-div-4-1">
 					<div class="box">
 						<p class="head-1">Automações</p>
-						<p class="number">15</p>
+						<p class="number"> <%- executions.length -%></p>
 						<i class="fa fa-line-chart box-icon"></i>
 					</div>
 				</div>
 				<div class="col-div-4-1">
 					<div class="box">
 						<p class="head-1">Execuções</p>
-						<p class="number">10</p>
+						<p class="number"> <%- executions.length -%></p>
 						<i class="fa fa-circle-o-notch box-icon"></i>
 					</div>
 				</div>
 				<div class="col-div-4-1">
 					<div class="box">
 						<p class="head-1">Mensagens enviadas</p>
-						<p class="number">35</p>
+						<p class="number"> <%- executions.length -%></p>
 						<i class="fa fa-shopping-bag box-icon"></i>
 					</div>
 				</div>
@@ -45,19 +45,23 @@
 										<th>AÇÕES</th>
 									</tr>
 								</thead>
-								<tbody>
-									<% integrations.forEach(integration=> { %>
-										<tr>
-											<td>
-												<%= integration.id %>
-											</td>
-											<td>
-												<%= integration.name %>
-											</td>
-											<td><button type="button" class="btn btn-primary">Ver</button></td>
-										</tr>
-										<% }) %>
-								</tbody>
+								<% integrations.forEach(integration=> { %>
+									<tr>
+										<td>
+											<%= integration.id %>
+										</td>
+										<td>
+											<%= integration.name %>
+										</td>
+										<td>
+
+											<a type="button" class="btn btn-primary"
+												href="/executions/<%= integration.id %>">Ver</a>
+
+										</td>
+									</tr>
+									<% }); %>
+										</tbody>
 							</table>
 						</div>
 					</div>
