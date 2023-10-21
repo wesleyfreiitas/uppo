@@ -76,7 +76,6 @@ router.post("/remember", (req, res) => {
         if (user == undefined) {
             console.log("Email não encontrado")
         } else {
-
             User.update({ email: email, tokenRefresh: hash }, { where: { email: email } })
                 .then(() => {
                     var link = `http://localhost:3000/remember/${hash}`
